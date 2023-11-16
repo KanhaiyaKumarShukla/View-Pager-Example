@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">In Hindi</string>
+    <string name="animal">Animal</string>
+    <string name="city">City</string>
+    <string name="fruit">Fruit</string>
+    <string name="flower">Flower</string>
+    <string name="image">Image</string>
+</resources>
