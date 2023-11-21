@@ -3,11 +3,8 @@
     <style name="tvStyle">
         <item name="android:textSize">50sp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:layout_marginLeft">30dp</item>
-        <item name="android:layout_marginRight">30dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
-        <item name="android:layout_marginBottom">30dp</item>
     </style>
 </resources>

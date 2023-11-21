@@ -6,4 +6,7 @@
     <color name="dark_brown">#A0614C</color>
     <color name="dark_blue">#0288d1</color>
     <color name="dark_pink">#ad1457</color>
+    <color name="my_light_primary">#0A8072</color>
+    <color name="status_bar_color">#08463E</color>
+    <color name="action_bar_variant_color">#08463E</color>
 </resources>

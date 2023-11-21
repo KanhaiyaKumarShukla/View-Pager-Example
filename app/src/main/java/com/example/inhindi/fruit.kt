@@ -1,5 +1,7 @@
 package com.example.inhindi
 
+import android.content.Context
+import android.media.AudioManager
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +9,23 @@ import android.widget.ListView
 
 class fruit : AppCompatActivity() {
     private var mediaPlayer:MediaPlayer?=null
+    private lateinit var audioManager: AudioManager
+    private var changeListener= AudioManager.OnAudioFocusChangeListener{ focusChange->
+        when(focusChange){
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT,
+            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK-> {
+                mediaPlayer?.pause()
+                mediaPlayer?.seekTo(0)
+            }
+            AudioManager.AUDIOFOCUS_GAIN-> mediaPlayer?.start()
+            AudioManager.AUDIOFOCUS_LOSS-> releaseMediaPlayer()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.words_list)
+        audioManager= getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
         val words=ArrayList<word>()
         words.add(word("Apple", "सेब (Seb)", R.mipmap.daffodil, R.raw.seb))
         words.add(word("Banana", "केला (Kela)", R.mipmap.rose, R.raw.kela))
@@ -31,10 +47,13 @@ class fruit : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             val wordPosition=words[position]
             releaseMediaPlayer()
-            mediaPlayer= MediaPlayer.create(this, wordPosition.getAudioResourceId())
-            mediaPlayer?.start()
-            mediaPlayer?.setOnCompletionListener {
-                releaseMediaPlayer()
+            val request:Int=audioManager.requestAudioFocus( changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+            if(request==AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                mediaPlayer = MediaPlayer.create(this, wordPosition.getAudioResourceId())
+                mediaPlayer?.start()
+                mediaPlayer?.setOnCompletionListener {
+                    releaseMediaPlayer()
+                }
             }
         }
 

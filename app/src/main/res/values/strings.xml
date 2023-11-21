@@ -5,4 +5,5 @@
     <string name="fruit">Fruit</string>
     <string name="flower">Flower</string>
     <string name="image">Image</string>
+    <string name="play_icon">Play Icon</string>
 </resources>

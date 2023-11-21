@@ -14,16 +14,36 @@
         tools:targetApi="31">
         <activity
             android:name=".city"
-            android:exported="false" />
+            android:label="@string/city"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".flower"
-            android:exported="false" />
+            android:label="@string/flower"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".fruit"
-            android:exported="false" />
+            android:label="@string/fruit"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".animal"
-            android:exported="false" />
+            android:label="@string/animal"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

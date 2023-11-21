@@ -8,15 +8,29 @@
     android:gravity="center"
     tools:context=".MainActivity"
     android:background="#ffe0b2">
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26a69a"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp">
     <TextView
         android:id="@+id/tvAnimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/animal"
         style="@style/tvStyle"
-        android:background="#26a69a"
+        android:background="?android:attr/selectableItemBackground"
         />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26a69a"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp">
     <TextView
         android:id="@+id/tvCity"
         android:layout_width="match_parent"
@@ -25,6 +39,14 @@
         style="@style/tvStyle"
         android:background="#26a69a"
         />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26a69a"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp">
     <TextView
         android:id="@+id/tvFruit"
         android:layout_width="match_parent"
@@ -33,6 +55,15 @@
         style="@style/tvStyle"
         android:background="#26a69a"
         />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26a69a"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp">
     <TextView
         android:id="@+id/tvFlower"
         android:layout_width="match_parent"
@@ -41,5 +72,6 @@
         style="@style/tvStyle"
         android:background="#26a69a"
         />
+    </FrameLayout>
 
 </LinearLayout>

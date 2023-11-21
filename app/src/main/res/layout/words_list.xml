@@ -6,10 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/item_List"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp"
+    android:padding="8dp"
+    android:drawSelectorOnTop="true"
     >
 
 </ListView>

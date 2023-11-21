@@ -1,17 +1,36 @@
 package com.example.inhindi
 
+import android.content.Context
+import android.media.AudioManager
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore.Audio
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 class animal : AppCompatActivity() {
     private var mediaPlayer:MediaPlayer?=null
+    private lateinit var audioManager:AudioManager
+    private var changeListener=AudioManager.OnAudioFocusChangeListener{ focusChange->
+        when(focusChange){
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT,
+            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK-> {
+                mediaPlayer?.pause()
+                mediaPlayer?.seekTo(0)
+            }
+            AudioManager.AUDIOFOCUS_GAIN-> mediaPlayer?.start()
+            AudioManager.AUDIOFOCUS_LOSS-> releaseMediaPlayer()
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.words_list)
+        audioManager= getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val words= arrayOf(
             word("Dog", "कुत्ता (Kutta)", R.mipmap.lily, R.raw.dog),
             word("Cat", "बिल्ली (Billi)", R.mipmap.sunflower, R.raw.cat),
@@ -33,11 +52,15 @@ class animal : AppCompatActivity() {
         animalLayout.adapter=itemAdapter
         animalLayout.setOnItemClickListener { _, _, position, _ ->
             val currentWord=words[position]
+
             releaseMediaPlayer()
-            mediaPlayer=MediaPlayer.create(this, currentWord.getAudioResourceId())
-            mediaPlayer?.start()
-            mediaPlayer?.setOnCompletionListener {
-                releaseMediaPlayer()
+            val request:Int=audioManager.requestAudioFocus( changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+            if(request==AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+                mediaPlayer=MediaPlayer.create(this, currentWord.getAudioResourceId())
+                mediaPlayer?.start()
+                mediaPlayer?.setOnCompletionListener {
+                    releaseMediaPlayer()
+                }
             }
         }
     }
@@ -49,6 +72,7 @@ class animal : AppCompatActivity() {
         if(mediaPlayer!=null){
             mediaPlayer!!.release()
             mediaPlayer=null
+            audioManager.abandonAudioFocus(changeListener)
         }
     }
 }
