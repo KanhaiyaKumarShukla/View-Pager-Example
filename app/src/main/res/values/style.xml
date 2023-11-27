@@ -7,4 +7,28 @@
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
     </style>
+
+    <style name="Theme.InHindi" parent="Base.Theme.InHindi" >
+        <item name="android:colorPrimary">@color/my_light_primary</item>
+        <item name="colorPrimaryDark">@color/action_bar_variant_color</item>
+        <item name="actionBarStyle">@style/AppBarStyle</item>
+        <item name="android:statusBarColor">@color/status_bar_color</item>
+    </style>
+
+    <style name="AppBarStyle" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- Remove the shadow below the app bar -->
+        <item name="android:colorPrimary">@color/my_light_primary</item>
+        <item name="colorPrimaryDark">@color/action_bar_variant_color</item>
+        <item name="android:statusBarColor">@color/status_bar_color</item>
+        <item name="elevation">0dp</item>
+    </style>
+    <style name="CategoryTab" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabSelectedTextColor">@android:color/black</item>
+        <item name="android:textColor">#075408</item>
+    </style>
+
+    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">#075408</item>
+    </style>
 </resources>

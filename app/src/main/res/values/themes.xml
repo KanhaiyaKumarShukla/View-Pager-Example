@@ -6,5 +6,5 @@
         <item name="android:statusBarColor">@color/status_bar_color</item>
     </style>
 
-    <style name="Theme.InHindi" parent="Base.Theme.InHindi" />
+
 </resources>
